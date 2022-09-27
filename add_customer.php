@@ -2,7 +2,10 @@
 
 require_once('./db_login.php');
 
-
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+}
 
 // validasi dari nilai yang dimasukkan ke form
 
@@ -86,12 +89,6 @@ if (isset($_POST['submit'])) {
         </form>
     </div>
     <div id="add_response">
-        <!-- <div class="data-val">
-            <p>Name : Benhard Sim </p>
-            <p>Address : Jln Tirto muliyo no 14 semarng jawa tengah </p>
-            <p>City : Semarang </p>
-            <a href="view_customer.php" class="btn btn-primary">View Customer</a>
-        </div> -->
     </div>
     <br>
 </div>

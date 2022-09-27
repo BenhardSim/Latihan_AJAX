@@ -2,6 +2,10 @@
 
 require_once('./db_login.php');
 $id = $_GET['id'];
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+}
 
 
 if (!isset($_POST['submit'])) {
@@ -85,11 +89,14 @@ if (!isset($_POST['submit'])) {
                 <div class="error"><?php if (isset($error_city)) echo $error_city ?></div>
             </div>
             <br>
-            <button class="btn btn-primary" name="submit" value="submit" type="submit">Submit</button>
+            <button  onclick="edit_customer_get(<?php echo $id ?>)" class="btn btn-primary" name="submit" value="submit" type="button">Submit</button>
             <a href="view_customer.php" class="btn btn-secondary">Cancel</a>
 
         </form>
     </div>
+    <div id="add_response">
+    </div>
+    <br>
 </div>
 <?php
 $db->close();
